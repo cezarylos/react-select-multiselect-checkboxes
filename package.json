@@ -1,5 +1,5 @@
 {
-  "name": "react-multiselect-checkboxes",
+  "name": "react-select-multiselect-checkboxes",
   "version": "1.0.0",
   "description": "Spiffy multiselect with checkboxes",
   "main": "lib/index.js",
@@ -67,7 +67,6 @@
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^3.1.10"
   },
-  "author": "Ian Sibner <sibnerian@gmail.com>",
   "homepage": "",
   "repository": {
     "type": "git",
