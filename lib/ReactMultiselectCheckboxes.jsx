@@ -1,56 +1,47 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import Select from "react-select";
-import { colors } from "react-select/lib/theme";
-import CheckboxGroup, { CheckboxGroupHeading } from "./CheckboxGroup";
-import CheckboxOption from "./CheckboxOption";
-import ChevronDown from "./ChevronDown";
-import Dropdown from "./Dropdown";
-import DropdownButton, { defaultDropdownButtonStyle } from "./DropdownButton";
-import DropdownIndicator from "./DropdownIndicator";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Select from 'react-select';
+import { colors } from 'react-select/lib/theme';
+import CheckboxGroup, { CheckboxGroupHeading } from './CheckboxGroup';
+import CheckboxOption from './CheckboxOption';
+import ChevronDown from './ChevronDown';
+import Dropdown from './Dropdown';
+import DropdownButton, { defaultDropdownButtonStyle } from './DropdownButton';
+import DropdownIndicator from './DropdownIndicator';
 
 const countOptions = (opts) => {
   if (!opts || !Array.isArray(opts)) return 0;
-  return opts.reduce(
-    (acc, o) => acc + (o.options ? countOptions(o.options) : 1),
-    0
-  );
+  return opts.reduce((acc, o) => acc + (o.options ? countOptions(o.options) : 1), 0);
 };
 
 const augmentOptionsWithGroupLabel = (opts) => {
-  return opts.map((o) => {
-    if (!o.options) {
-      return o;
-    }
-  });
-};
+  return opts.map(o => {
+    if (!o.options) {return o}
+  })
+}
 
 const defaultStyles = {
   control: (provided) => ({ ...provided, minWidth: 240, margin: 8 }),
-  menu: () => ({ boxShadow: "inset 0 1px 0 rgba(0, 0, 0, 0.1)" }),
+  menu: () => ({ boxShadow: 'inset 0 1px 0 rgba(0, 0, 0, 0.1)' }),
   groupHeading: (def, opts) => {
     const provided = {
       ...def,
       marginBottom: 0,
-      padding: "8px 12px 4px",
-      fontSize: "110%",
+      padding: '8px 12px 4px',
+      fontSize: '110%',
       // textTransform: undefined,
-      display: "flex",
-      alignItems: "center",
+      display: 'flex',
+      alignItems: 'center',
     };
     if (opts.checked) {
-      return {
-        ...provided,
-        backgroundColor: colors.primary50,
-        color: colors.neutral80,
-      };
+      return { ...provided, backgroundColor: colors.primary50, color: colors.neutral80 };
     }
     if (opts.indeterminate) {
       return { ...provided, backgroundColor: colors.primary25 };
     }
     return {
       ...provided,
-      ":hover": {
+      ':hover': {
         backgroundColor: colors.primary25,
       },
     };
@@ -58,7 +49,7 @@ const defaultStyles = {
   group: (provided) => ({ ...provided, padding: 0 }),
   dropdownButton: (baseProvided, opts) => {
     const provided = { ...baseProvided };
-    ["width", "maxWidth", "minWidth"].forEach((widthProp) => {
+    ['width', 'maxWidth', 'minWidth'].forEach((widthProp) => {
       if (opts[widthProp]) {
         provided[widthProp] = opts[widthProp];
       }
@@ -72,17 +63,17 @@ const defaultStyles = {
     if (opts.isSelected) {
       return {
         ...provided,
-        color: "#000",
+        color: '#000',
         backgroundColor: colors.primary50,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         minWidth: 240,
       };
     }
     return {
       ...provided,
-      backgroundColor: "transparent",
+      backgroundColor: 'transparent',
       minWidth: 240,
-      ":hover": { backgroundColor: colors.primary25 },
+      ':hover': { backgroundColor: colors.primary25 },
     };
   },
 };
@@ -133,7 +124,7 @@ export default class ReactMultiselectCheckboxes extends Component {
     menuIsOpen: undefined,
     components: {},
     styles: {},
-    placeholderButtonLabel: "Select...",
+    placeholderButtonLabel: 'Select...',
     onChange() {},
     getDropdownButtonLabel({ placeholderButtonLabel, value }) {
       if (!value) {
@@ -161,7 +152,7 @@ export default class ReactMultiselectCheckboxes extends Component {
     onInputChange() {},
   };
 
-  state = { isOpen: false, value: undefined, inputValue: "" };
+  state = { isOpen: false, value: undefined, inputValue: '' };
 
   onSelectChange = (value, ...rest) => {
     // this.toggleOpen();
@@ -174,11 +165,11 @@ export default class ReactMultiselectCheckboxes extends Component {
       this.props.onInputChange(inputValue, event, ...restArgs);
     }
     switch (event.action) {
-      case "input-change":
+      case 'input-change':
         this.setState({ inputValue });
         break;
-      case "menu-close":
-        this.setState({ inputValue: "" });
+      case 'menu-close':
+        this.setState({ inputValue: '' });
         break;
       default:
         break;
@@ -220,7 +211,7 @@ export default class ReactMultiselectCheckboxes extends Component {
       value: propsValue,
       hideSearch,
       minItemsForSearch,
-      options,
+      options: preTransformOptions,
       resetInputOnSelect,
       onInputChange,
       ...rest
@@ -228,16 +219,14 @@ export default class ReactMultiselectCheckboxes extends Component {
     // Values can be duplicated between groups; how to disambiguate? Need to augment grouped options
     // with the group label.
     const components = { ...defaultComponents, ...propsComponents };
+    const options = preTransformOptions;
     if (hideSearch || countOptions(options) < minItemsForSearch) {
       components.Control = () => null;
     }
     const styles = this.calcStyles();
-    const isOpen =
-      typeof menuIsOpen === "boolean" ? menuIsOpen : this.state.isOpen;
+    const isOpen = typeof menuIsOpen === 'boolean' ? menuIsOpen : this.state.isOpen;
     const value = propsValue || this.state.value;
-    const inputValueIfDefined = resetInputOnSelect
-      ? {}
-      : { inputValue: this.state.inputValue };
+    const inputValueIfDefined = resetInputOnSelect ? {} : { inputValue: this.state.inputValue };
     return (
       <components.Dropdown
         isOpen={isOpen}

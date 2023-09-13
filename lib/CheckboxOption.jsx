@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { css } from "emotion";
-import CheckboxWithIndeterminate from "./CheckboxWithIndeterminate";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { css } from 'emotion';
+import CheckboxWithIndeterminate from './CheckboxWithIndeterminate';
 
 function CheckboxOption(props) {
   const {
@@ -19,32 +19,28 @@ function CheckboxOption(props) {
     <div
       ref={innerRef}
       className={cx(
-        css(getStyles("option", props)),
+        css(getStyles('option', props)),
         {
           option: true,
-          "option--is-disabled": isDisabled,
-          "option--is-focused": isFocused,
-          "option--is-selected": isSelected,
+          'option--is-disabled': isDisabled,
+          'option--is-focused': isFocused,
+          'option--is-selected': isSelected,
         },
-        className
+        className,
       )}
       {...innerProps}
     >
-      <CheckboxWithIndeterminate
-        readOnly
-        type="checkbox"
-        checked={isSelected}
-      />
+      <CheckboxWithIndeterminate readOnly type="checkbox" checked={isSelected} />
       {children}
     </div>
   );
 }
 CheckboxOption.propTypes = {
   children: PropTypes.node,
-};
+}
 
 CheckboxOption.defaultProps = {
-  children: null,
-};
+  children :null,
+}
 
 export default CheckboxOption;

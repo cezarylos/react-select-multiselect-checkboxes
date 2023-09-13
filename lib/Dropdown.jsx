@@ -1,17 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Blanket from "./Blanket";
-import Menu from "./Menu";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Blanket from './Blanket';
+import Menu from './Menu';
 
-export default function Dropdown({
-  children,
-  isOpen,
-  target,
-  onClose,
-  rightAligned,
-}) {
+export default function Dropdown({ children, isOpen, target, onClose, rightAligned }) {
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: 'relative' }}>
       {target}
       {isOpen ? <Menu rightAligned={rightAligned}>{children}</Menu> : null}
       {isOpen ? <Blanket onClick={onClose} /> : null}

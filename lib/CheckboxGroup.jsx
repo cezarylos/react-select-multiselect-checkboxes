@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { css } from "emotion";
-import CheckboxWithIndeterminate from "./CheckboxWithIndeterminate";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { css } from 'emotion';
+import CheckboxWithIndeterminate from './CheckboxWithIndeterminate';
 
 function CheckboxGroup(props) {
   const {
@@ -15,9 +15,9 @@ function CheckboxGroup(props) {
     label,
     getValue,
     theme,
-    selectProps: { getOptionValue },
+    selectProps,
   } = props;
-  // const getOptionValue = props.selectProps.getOptionValue;
+  const getOptionValue = props.selectProps.getOptionValue;
   const optionsIncludes = (v) =>
     !!data.options.find((opt) => getOptionValue(opt) === getOptionValue(v));
 
@@ -26,10 +26,7 @@ function CheckboxGroup(props) {
   const indeterminate = numCheckedOptions > 0 && !checked;
   const checkboxProps = { indeterminate, checked };
   const selectAllOptions = () => {
-    const newValue = [
-      ...getValue().filter((v) => !optionsIncludes(v)),
-      ...data.options,
-    ];
+    const newValue = [...getValue().filter((v) => !optionsIncludes(v)), ...data.options];
     setValue(newValue);
   };
   const clearOptions = () => {
@@ -37,9 +34,7 @@ function CheckboxGroup(props) {
     setValue(newValue);
   };
   return (
-    <div
-      className={cx(css(getStyles("group", props)), { group: true }, className)}
-    >
+    <div className={cx(css(getStyles('group', props)), { group: true }, className)}>
       <Heading
         checkboxProps={checkboxProps}
         getStyles={getStyles}
@@ -74,7 +69,7 @@ CheckboxGroup.propTypes = {
       PropTypes.shape({
         label: PropTypes.node,
         value: PropTypes.any,
-      })
+      }),
     ),
   }).isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -85,20 +80,13 @@ CheckboxGroup.defaultProps = {
 };
 
 export function CheckboxGroupHeading(props) {
-  const {
-    className,
-    cx,
-    getStyles,
-    children,
-    checkboxProps,
-    ...cleanProps
-  } = props;
+  const { className, cx, getStyles, children, checkboxProps, ...cleanProps } = props;
   return (
     <div
       className={cx(
-        css(getStyles("groupHeading", { ...props, ...checkboxProps })),
-        { "group-heading": true },
-        className
+        css(getStyles('groupHeading', { ...props, ...checkboxProps })),
+        { 'group-heading': true },
+        className,
       )}
       {...cleanProps}
     >

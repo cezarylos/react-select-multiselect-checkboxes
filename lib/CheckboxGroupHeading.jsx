@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { css } from "emotion";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { css } from 'emotion';
 
 class CheckboxWithIndeterminate extends React.Component {
   static propTypes = {
@@ -39,19 +39,10 @@ export const GroupHeading = (props) => {
   console.log(props);
   return (
     <div
-      className={cx(
-        css(getStyles("groupHeading", props)),
-        { "group-heading": true },
-        className
-      )}
+      className={cx(css(getStyles('groupHeading', props)), { 'group-heading': true }, className)}
       {...cleanProps}
     >
-      <CheckboxWithIndeterminate
-        readOnly
-        type="checkbox"
-        indeterminate
-        checked={false}
-      />
+      <CheckboxWithIndeterminate readOnly type="checkbox" indeterminate checked={false{}/>
       {children}
     </div>
   );

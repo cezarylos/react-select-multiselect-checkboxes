@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Select from "react-select";
-import CheckboxOption from "./CheckboxOption";
-import CheckboxGroup, { CheckboxGroupHeading } from "./CheckboxGroup";
-import { groupedOptions } from "./data";
-import DropdownButton from "./DropdownButton";
-import Dropdown from "./Dropdown";
-import DropdownIndicator from "./DropdownIndicator";
-import ChevronDown from "./ChevronDown";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Select from 'react-select';
+import CheckboxOption from './CheckboxOption';
+import CheckboxGroup, { CheckboxGroupHeading } from './CheckboxGroup';
+import { groupedOptions } from './data';
+import DropdownButton from './DropdownButton';
+import Dropdown from './Dropdown';
+import DropdownIndicator from './DropdownIndicator';
+import ChevronDown from './ChevronDown';
 
 const selectStyles = {
   control: (provided) => ({ ...provided, minWidth: 240, margin: 8 }),
-  menu: () => ({ boxShadow: "inset 0 1px 0 rgba(0, 0, 0, 0.1)" }),
+  menu: () => ({ boxShadow: 'inset 0 1px 0 rgba(0, 0, 0, 0.1)' }),
 };
 
 const defaultComponents = {
@@ -44,7 +44,7 @@ export default class PopoutExample extends Component {
   };
 
   render() {
-    const components = { ...defaultComponents, ...this.props.components };
+    const components = {...defaultComponents, ...this.props.components};
     const { isOpen, value } = this.state;
     return (
       <components.Dropdown
@@ -56,7 +56,7 @@ export default class PopoutExample extends Component {
             onPress={this.toggleOpen}
             isSelected={isOpen}
           >
-            {value ? `State: ${value.label}` : "Select a State"}
+            {value ? `State: ${value.label}` : 'Select a State'}
           </components.DropdownButton>
         }
       >
@@ -83,7 +83,7 @@ export default class PopoutExample extends Component {
           tabSelectsValue={false}
           value={value}
         />
-      </components.Dropdown>
+      </Dropdown>
     );
   }
 }

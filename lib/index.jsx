@@ -1,16 +1,16 @@
-import React from "react";
-import Select from "react-select";
+import React from 'react';
+import Select from 'react-select';
 
-class MySuperCoolComponent extends React.Component {
-  state = {};
+export default class MySuperCoolComponent extends React.Component {
+  state = {
 
-  render() {
-    return (
-      <div style={{ width: 200 }}>
-        <PopoutExample />
-      </div>
-    );
+    render() {
+
+      return (
+        <div style={{width: 200}}>
+          <PopoutExample/>
+        </div>
+      );
+    }
   }
 }
-
-export default MySuperCoolComponent;
